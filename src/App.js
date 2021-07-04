@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import NavContainer from './containers/NavContainers';
+import LoginContainer from './containers/LoginContainer';
+import { Switch, Route } from 'react-router';
+import HomeContainer from './containers/HomeContainer';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-fluid">
+      <div className="row">
+        <section className="col-3">
+          <NavContainer />
+        </section>
+        <main className="col-9">
+          <Switch>
+            <Route exact path="/" component={HomeContainer} />
+            <Route path="/login" component={LoginContainer} />
+          </Switch>
+        </main>
+      </div>
     </div>
   );
 }
