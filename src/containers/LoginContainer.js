@@ -25,7 +25,7 @@ class LoginContainer extends Component {
                 if (api_response.result) {
                     let { access, refresh } = api_response.data
                     this.props.dispatchLogin({ access, refresh })
-                    get_user(this.props.access)
+                    get_user(this.props.tokens)
                         .then(api_response => {
                             if (api_response.result) {
                                 this.props.dispatchUserData({ userData: api_response.data })
@@ -46,7 +46,7 @@ class LoginContainer extends Component {
 
 }
 
-const mapStateToProps = (state) => ({ isAuthenticated: state.auth.isAuthenticated, access: state.auth.access });
+const mapStateToProps = (state) => ({ isAuthenticated: state.auth.isAuthenticated, tokens: { access: state.auth.access, refresh: state.auth.refresh } });
 const mapDispatchToProps = { dispatchLogin, dispatchUserData };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
