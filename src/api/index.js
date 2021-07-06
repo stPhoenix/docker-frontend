@@ -7,6 +7,7 @@ const response_template = { result: false, message: "Bad", data: [] };
 
 const error_handler = (api_response, error) => {
     console.debug(error)
+    console.debug(error.response)
     api_response.result = false;
     if (error.response) {
         api_response.message = JSON.stringify(error.response.data).replace("\"", "").replace("{", "").replace("}", "").replace("[", "").replace("]", "").replace("'", "");
@@ -42,7 +43,7 @@ const api_call = async (data, tokens, url, params, method) => {
 
         if (api_response.result) {
             UpdateToken({ access: api_response.data.access, refresh: tokens.refresh })
-            api_response = await api_call(data, { access: api_response.data.access, refresh: tokens.refresh }, url)
+            api_response = await api_call(data, { access: api_response.data.access, refresh: tokens.refresh }, url, method)
         }
         else {
             TokensExpired()
@@ -63,8 +64,12 @@ export const login = async (username, password) => {
 };
 
 export const sign_up = async (props) => {
-    let api_response = { result: false, message: "Bad", data: [] };
-    await axios.post("/social/users/", { ...props })
+    let api_response = { ...response_template};
+    const formData = new FormData()
+    for (const [ key, value ] of Object.entries(props)) {
+     formData.append(key,value)
+    }
+    await axios.post("/social/users/", formData, {headers: formData.getHeaders})
         .then((response) => (response_handler(api_response, response)))
         .catch((error) => (error_handler(api_response, error)));
     return api_response;
