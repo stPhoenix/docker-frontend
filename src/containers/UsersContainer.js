@@ -12,6 +12,7 @@ class UsersContainer extends Component {
             next: null,
             previous: null
         }
+        this.fetch_users = this.fetch_users.bind(this)
     }
 
     componentDidMount() {
@@ -34,7 +35,7 @@ class UsersContainer extends Component {
 
     render() {
         return (
-            <UsersComponent user_list={this.state.user_list}/>
+            <UsersComponent user_list={this.state.user_list} previous={this.state.previous} next={this.state.next} paginate={this.fetch_users} />
         )
     }
 
