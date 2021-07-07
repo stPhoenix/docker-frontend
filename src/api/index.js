@@ -81,3 +81,5 @@ export const get_user = (tokens) => (api_call(empty, tokens, "social/users/me", 
 export const get_user_list = (tokens, params) => (api_call(empty, tokens, "social/users/", params, "get"))
 export const get_my_subscriptions = (tokens, params) => (api_call(empty, tokens, "social/subscriptions/my/", params, "get"))
 export const get_to_me_subscriptions = (tokens, params) => (api_call(empty, tokens, "social/subscriptions/to-me/", params, "get"))
+
+export const send_subscription_request = (tokens, target) => (api_call({target, status: "1"}, tokens, "social/subscriptions/my/", empty, "post"))
