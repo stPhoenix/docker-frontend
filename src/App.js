@@ -1,14 +1,17 @@
 import NavContainer from './containers/NavContainers';
 import LoginContainer from './containers/LoginContainer';
-import { Switch, Route } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router';
 import HomeContainer from './containers/HomeContainer';
 import SignupContainer from "./containers/SignupContainer";
 import CustomAlertContainer from "./containers/CustomAlertContainer";
 import React from "react";
 import UsersContainer from "./containers/UsersContainer";
+import { connect } from 'react-redux';
 
 
-function App() {
+
+function App(props) {
+  const goAuth = ( <Redirect to="/login" />)
   return (
     <div className="container-fluid">
       <div className="row">
@@ -20,6 +23,7 @@ function App() {
             <CustomAlertContainer />
           </section>
           <section>
+          {props.isAuthenticated ? "" : goAuth}
           <Switch>
             <Route exact path="/" component={HomeContainer} />
             <Route path="/login" component={LoginContainer} />
@@ -33,4 +37,6 @@ function App() {
   );
 }
 
-export default App;
+const matchStateToProps = (state) => ({ isAuthenticated: state.auth.isAuthenticated });
+
+export default connect(matchStateToProps)(App);
