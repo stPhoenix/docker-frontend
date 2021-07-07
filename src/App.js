@@ -5,6 +5,7 @@ import HomeContainer from './containers/HomeContainer';
 import SignupContainer from "./containers/SignupContainer";
 import CustomAlertContainer from "./containers/CustomAlertContainer";
 import React from "react";
+import UsersContainer from "./containers/UsersContainer";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/" component={HomeContainer} />
             <Route path="/login" component={LoginContainer} />
             <Route path="/signup" component={SignupContainer} />
+            <Route path="/users" component={UsersContainer} />
           </Switch>
           </section>
         </main>

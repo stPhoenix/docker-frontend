@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HomeComponent } from '../components/HomeComponent';
-import { Switch, Route, Redirect } from 'react-router';
-
+import { Redirect } from 'react-router';
 class HomeContainer extends Component {
 
     render() {
@@ -13,8 +12,6 @@ class HomeContainer extends Component {
         }
         return (
             <HomeComponent>
-                <Switch>
-                </Switch>
             </HomeComponent>
         )
     }
