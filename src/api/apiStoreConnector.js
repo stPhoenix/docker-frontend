@@ -1,7 +1,4 @@
-import React from 'react';
+import store from '../store'
 
-import { useDispatch } from "react-redux";
-import { logout, updateAccessToken } from "../slices/auth";
-
-export const TokensExpired = () => (useDispatch(logout()))
-export const UpdateToken = (payload) => (useDispatch(updateAccessToken(payload)))
+export const TokensExpired = () => (store.dispatch({type: "auth/logout"}))
+export const UpdateToken = (payload) => (store.dispatch({type: "auth/updateAccessToken", payload}))
