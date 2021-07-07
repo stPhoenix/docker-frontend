@@ -1,7 +1,7 @@
 export const fetch_data_page = (setState, apiCall, tokens, page, addAlert) => {
     apiCall(tokens, {page})
     .then((api_response)=>{
-        if (api_response)
+        if (api_response.result)
         {
             const regex = /(?<=page=)\d+/gm;
             let found_prev = api_response.data.previous != null ? api_response.data.previous.match(regex) : null
