@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { HomeComponent } from '../components/HomeComponent';
 import { Switch, Route, Redirect } from 'react-router';
 
-
 class HomeContainer extends Component {
 
     render() {

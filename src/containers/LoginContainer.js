@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { login as apiLogin, get_user } from '../api'
 import { LoginComponent } from '../components/LoginComponent'
 import { login as dispatchLogin, userData as dispatchUserData } from '../slices/auth'
+import {add as addAlert} from "../slices/alerts";
 
 class LoginContainer extends Component {
     constructor(props) {
@@ -29,11 +30,15 @@ class LoginContainer extends Component {
                         .then(api_response => {
                             if (api_response.result) {
                                 this.props.dispatchUserData({ userData: api_response.data })
+                                this.props.addAlert({variant: "success", text: "Login success."})
+                            }
+                            else {
+                                this.props.addAlert(({variant: "danger", text: api_response.message}))
                             }
                         })
                 }
                 else {
-                    // Login error
+                    this.props.addAlert(({variant: "danger", text: api_response.message}))
                 }
 
             });
@@ -47,6 +52,6 @@ class LoginContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({ isAuthenticated: state.auth.isAuthenticated, tokens: { access: state.auth.access, refresh: state.auth.refresh } });
-const mapDispatchToProps = { dispatchLogin, dispatchUserData };
+const mapDispatchToProps = { dispatchLogin, dispatchUserData, addAlert };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)

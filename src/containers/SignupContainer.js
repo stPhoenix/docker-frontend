@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {sign_up as apiSignup} from "../api";
 import {Redirect} from "react-router-dom"
 import {SignUpComponent} from "../components/SignupComponent";
+import {add as addAlert} from "../slices/alerts";
 
 class SignupContainer extends Component{
     constructor(props) {
@@ -29,10 +30,10 @@ class SignupContainer extends Component{
         apiSignup(this.state).then((api_response) => {
             if (api_response.result)
             {
-              //show success message
+              this.props.addAlert(({variant: "success", text: "Sign up success"}))
             }
             else{
-                //show error
+                this.props.addAlert(({variant: "danger", text: api_response.message}))
             }
         })
     }
@@ -48,4 +49,5 @@ class SignupContainer extends Component{
 }
 
 const mapStateToProps = (state) => ({isAuthenticated: state.auth.isAuthenticated})
-export default connect(mapStateToProps)(SignupContainer)
+const mapDispatchToProps = {addAlert,}
+export default connect(mapStateToProps, mapDispatchToProps)(SignupContainer)
