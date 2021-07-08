@@ -22,7 +22,7 @@ export const UsersComponent = (props) => {
                             props.user_list.map(user => {
                                 return(
                                     <tr key={user.id}>
-                                        <td><Image src={user.avatar} /></td>
+                                        <td><Image width="100" height="100" thumbnail={true} src={user.avatar} /></td>
                                         <td>{user.username}</td>
                                         <td><Button value={user.id} variant="outline-primary" onClick={props.onClick}>Send request</Button></td>
                                     </tr>
