@@ -1,5 +1,5 @@
-export const fetch_data_page = (setState, apiCall, tokens, page, addAlert) => {
-    apiCall(tokens, {page})
+export const fetch_data_page = (setState, apiCall, page, addAlert) => {
+    apiCall({page})
     .then((api_response)=>{
         if (api_response.result)
         {
