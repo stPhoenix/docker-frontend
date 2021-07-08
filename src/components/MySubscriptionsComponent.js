@@ -25,7 +25,7 @@ export const MySubscriptionsComponent = (props) => {
                                         <td>{subscription.created}</td>
                                         <td>{subscription.target_username}</td>
                                         <td>{subscription.status_text}</td>
-                                        <td><Button disabled={subscription.status !== 1} value={subscription.id} variant="outline-primary" onClick={props.onClick}>Abort request</Button></td>
+                                        <td><Button disabled={subscription.status !== 1} value={subscription.id} variant="outline-danger" onClick={props.onClick}>Abort request</Button></td>
                                     </tr>
                                 )
                             })
