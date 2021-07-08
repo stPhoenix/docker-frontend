@@ -5,7 +5,7 @@ import { add as addAlert } from "../slices/alerts";
 import { fetch_data_page } from '../tools/fetch_data_page';
 import { MySubscriptionsComponent } from "../components/MySubscriptionsComponent";
 
-class UsersContainer extends Component {
+class MySubscriptionsContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -42,7 +42,7 @@ class UsersContainer extends Component {
 
     render() {
         return (
-            <MySubscriptionsComponent subscriptions_list={this.state.fetched_list} previous={this.state.previous} next={this.state.next} paginate={this.fetch_users} onClick={this.abortRequest} />
+            <MySubscriptionsComponent subscriptions_list={this.state.fetched_list} previous={this.state.previous} next={this.state.next} paginate={this.fetch_subscriptions} onClick={this.abortRequest} />
         )
     }
 
@@ -51,4 +51,4 @@ class UsersContainer extends Component {
 const mapStateToProps = (state) => ({ isAuthenticated: state.auth.isAuthenticated });
 const mapDispatchToProps = { addAlert };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(MySubscriptionsContainer)

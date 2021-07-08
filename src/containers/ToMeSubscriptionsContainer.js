@@ -45,7 +45,7 @@ class ToMeSubscriptionsContainer extends Component {
 
     render() {
         return (
-            <ToMeSubscriptionsComponent subscriptions_list={this.state.fetched_list} previous={this.state.previous} next={this.state.next} paginate={this.fetch_users} onClick={this.proceedRequest} />
+            <ToMeSubscriptionsComponent subscriptions_list={this.state.fetched_list} previous={this.state.previous} next={this.state.next} paginate={this.fetch_subscriptions} onClick={this.proceedRequest} />
         )
     }
 
