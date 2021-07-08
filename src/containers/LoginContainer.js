@@ -4,6 +4,7 @@ import { login as apiLogin, get_user } from '../api'
 import { LoginComponent } from '../components/LoginComponent'
 import { login as dispatchLogin, userData as dispatchUserData } from '../slices/auth'
 import {add as addAlert} from "../slices/alerts";
+import {Redirect} from "react-router-dom";
 
 class LoginContainer extends Component {
     constructor(props) {
@@ -44,6 +45,12 @@ class LoginContainer extends Component {
             });
     };
     render() {
+        if (this.props.isAuthenticated)
+        {
+            return (
+                <Redirect to="/home" />
+            )
+        }
         return (
             <LoginComponent click={this.login} username={this.state.username} passowrd={this.state.password} onChange={this.onChange} />
         )
