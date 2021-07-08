@@ -7,6 +7,7 @@ import CustomAlertContainer from "./containers/CustomAlertContainer";
 import React from "react";
 import UsersContainer from "./containers/UsersContainer";
 import { connect } from 'react-redux';
+import MySubscriptionsContainer from "./containers/MySubscriptionsContainer";
 
 
 
@@ -29,6 +30,7 @@ function App(props) {
             <Route path="/login" component={LoginContainer} />
             <Route path="/signup" component={SignupContainer} />
             <Route path="/users" component={UsersContainer} />
+            <Route path="/subscriptions/my" component={MySubscriptionsContainer} />
           </Switch>
           </section>
         </main>

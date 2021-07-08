@@ -83,3 +83,4 @@ export const get_my_subscriptions = (tokens, params) => (api_call(empty, tokens,
 export const get_to_me_subscriptions = (tokens, params) => (api_call(empty, tokens, "social/subscriptions/to-me/", params, "get"))
 
 export const send_subscription_request = (tokens, target) => (api_call({target, status: "1"}, tokens, "social/subscriptions/my/", empty, "post"))
+export const abort_sub_request = (tokens, id) => (api_call(empty, tokens, "social/subscriptions/my/", id, "delete"))
