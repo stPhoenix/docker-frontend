@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { get_to_me_subscriptions, proceed_sub_request } from '../api'
-import {add as addAlert} from "../slices/alerts";
+import { add as addAlert } from "../slices/alerts";
 import { fetch_data_page } from '../tools/fetch_data_page';
-import {ToMeSubscriptionsComponent} from "../components/ToMeSubscriptionsComponent";
+import { ToMeSubscriptionsComponent } from "../components/ToMeSubscriptionsComponent";
 
 class ToMeSubscriptionsContainer extends Component {
     constructor(props) {
@@ -23,24 +23,23 @@ class ToMeSubscriptionsContainer extends Component {
     }
 
     fetch_subscriptions(page) {
-        fetch_data_page(this.setState, get_to_me_subscriptions, this.props.tokens, page, this.props.addAlert)
+        fetch_data_page(this.setState, get_to_me_subscriptions, page, this.props.addAlert)
     }
 
-    proceedRequest(e)
-    {
+    proceedRequest(e) {
         console.debug(e)
-        const {target, status, id} = e
-        proceed_sub_request(this.props.tokens, id, {target, status})
-        .then((api_response) => {
-            if (api_response.result){
-                const text = e.target.status === 1 ? "accepted" : "denied"
-                this.props.addAlert({variant:"success", text:`Request ${text}`})
-                this.fetch_subscriptions(1)
-            }
-            else{
-                this.props.addAlert({variant:"danger", text:api_response.message})
-            }
-        })
+        const { target, status, id } = e
+        proceed_sub_request(id, { target, status })
+            .then((api_response) => {
+                if (api_response.result) {
+                    const text = e.target.status === 1 ? "accepted" : "denied"
+                    this.props.addAlert({ variant: "success", text: `Request ${text}` })
+                    this.fetch_subscriptions(1)
+                }
+                else {
+                    this.props.addAlert({ variant: "danger", text: api_response.message })
+                }
+            })
     }
 
 
@@ -52,7 +51,7 @@ class ToMeSubscriptionsContainer extends Component {
 
 }
 
-const mapStateToProps = (state) => ({ isAuthenticated: state.auth.isAuthenticated, tokens: { access: state.auth.access, refresh: state.auth.refresh } });
+const mapStateToProps = (state) => ({ isAuthenticated: state.auth.isAuthenticated });
 const mapDispatchToProps = { addAlert };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToMeSubscriptionsContainer)

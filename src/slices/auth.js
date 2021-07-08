@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { LocalStoreConnector } from "../tools/localStoreConnector";
 
 const initialState = { isAuthenticated: false, access: null, refresh: null, userData: null }
 
@@ -8,21 +9,22 @@ const authSlice = createSlice(
         initialState,
         reducers: {
             login(state, action) {
-                return { ...state, isAuthenticated: true, access: action.payload.access, refresh: action.payload.refresh }
+                LocalStoreConnector.setItem("access", action.payload.access)
+                LocalStoreConnector.setItem("refresh", action.payload.refresh)
+                return { ...state, isAuthenticated: true }
             },
             logout(state) {
+                LocalStoreConnector.removeItem("access")
+                LocalStoreConnector.removeItem("refresh")
                 return initialState
             },
             userData(state, action) {
                 return { ...state, userData: action.payload.userData }
             },
-            updateAccessToken(state, action) {
-                return { ...state, access: action.payload }
-            }
 
         }
     }
 )
 
-export const { login, logout, userData, updateAccessToken } = authSlice.actions
+export const { login, logout, userData } = authSlice.actions
 export default authSlice.reducer

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { get_user_list, send_subscription_request } from '../api'
-import {add as addAlert} from "../slices/alerts";
-import {UsersComponent} from "../components/UsersComponent";
+import { add as addAlert } from "../slices/alerts";
+import { UsersComponent } from "../components/UsersComponent";
 import { fetch_data_page } from '../tools/fetch_data_page';
 
 class UsersContainer extends Component {
@@ -23,20 +23,19 @@ class UsersContainer extends Component {
     }
 
     fetch_users(page) {
-        fetch_data_page(this.setState, get_user_list, this.props.tokens, page, this.props.addAlert)
+        fetch_data_page(this.setState, get_user_list, page, this.props.addAlert)
     }
 
-    sendRequest(e)
-    {
-        send_subscription_request(this.props.tokens, e.target.value)
-        .then((api_response) => {
-            if (api_response.result){
-                this.props.addAlert({variant:"success", text:"Request sent"})
-            }
-            else{
-                this.props.addAlert({variant:"danger", text:api_response.message})
-            }
-        })
+    sendRequest(e) {
+        send_subscription_request(e.target.value)
+            .then((api_response) => {
+                if (api_response.result) {
+                    this.props.addAlert({ variant: "success", text: "Request sent" })
+                }
+                else {
+                    this.props.addAlert({ variant: "danger", text: api_response.message })
+                }
+            })
     }
 
 
@@ -48,7 +47,7 @@ class UsersContainer extends Component {
 
 }
 
-const mapStateToProps = (state) => ({ isAuthenticated: state.auth.isAuthenticated, tokens: { access: state.auth.access, refresh: state.auth.refresh } });
+const mapStateToProps = (state) => ({ isAuthenticated: state.auth.isAuthenticated });
 const mapDispatchToProps = { addAlert };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)

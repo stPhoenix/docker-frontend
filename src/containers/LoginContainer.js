@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { login as apiLogin, get_user } from '../api'
 import { LoginComponent } from '../components/LoginComponent'
 import { login as dispatchLogin, userData as dispatchUserData } from '../slices/auth'
-import {add as addAlert} from "../slices/alerts";
-import {Redirect} from "react-router-dom";
+import { add as addAlert } from "../slices/alerts";
+import { Redirect } from "react-router-dom";
 
 class LoginContainer extends Component {
     constructor(props) {
@@ -27,26 +27,25 @@ class LoginContainer extends Component {
                 if (api_response.result) {
                     let { access, refresh } = api_response.data
                     this.props.dispatchLogin({ access, refresh })
-                    get_user(this.props.tokens)
+                    get_user()
                         .then(api_response => {
                             if (api_response.result) {
                                 this.props.dispatchUserData({ userData: api_response.data })
-                                this.props.addAlert({variant: "success", text: "Login success."})
+                                this.props.addAlert({ variant: "success", text: "Login success." })
                             }
                             else {
-                                this.props.addAlert(({variant: "danger", text: api_response.message}))
+                                this.props.addAlert(({ variant: "danger", text: api_response.message }))
                             }
                         })
                 }
                 else {
-                    this.props.addAlert(({variant: "danger", text: api_response.message}))
+                    this.props.addAlert(({ variant: "danger", text: api_response.message }))
                 }
 
             });
     };
     render() {
-        if (this.props.isAuthenticated)
-        {
+        if (this.props.isAuthenticated) {
             return (
                 <Redirect to="/home" />
             )
@@ -58,7 +57,7 @@ class LoginContainer extends Component {
 
 }
 
-const mapStateToProps = (state) => ({ isAuthenticated: state.auth.isAuthenticated, tokens: { access: state.auth.access, refresh: state.auth.refresh } });
+const mapStateToProps = (state) => ({ isAuthenticated: state.auth.isAuthenticated });
 const mapDispatchToProps = { dispatchLogin, dispatchUserData, addAlert };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
