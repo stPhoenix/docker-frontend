@@ -86,6 +86,9 @@ export const get_user = () => (api_call(empty_data, "social/users/me", empty, "g
 export const get_user_list = (params) => (api_call(empty_data, "social/users/", params, "get"))
 export const get_my_subscriptions = (params) => (api_call(empty_data, "social/subscriptions/my/", params, "get"))
 export const get_to_me_subscriptions = (params) => (api_call(empty_data, "social/subscriptions/to-me/", params, "get"))
+export const get_posts = (params) => (api_call(empty_data, "blog/posts/", params, "get"))
+export const get_my_posts = (params) => (api_call(empty_data, "blog/posts/my/", params, "get"))
+export const get_comments = (id, params) => (api_call(empty_data, `blog/comments/post/${id}`, params, "get"))
 
 export const send_subscription_request = (target) => (api_call({ target, status: "1" }, "social/subscriptions/my/", empty, "post"))
 export const abort_sub_request = (id) => (api_call(empty_data, `social/subscriptions/my/${id}`, empty, "delete"))

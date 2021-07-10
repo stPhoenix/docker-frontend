@@ -1,22 +1,36 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { HomeComponent } from '../components/HomeComponent';
-import { Redirect } from 'react-router';
+import { get_posts } from '../api';
+import {fetch_data_page} from '../tools/fetch_data_page'
+import { add as addAlert } from "../slices/alerts";
+import { connect } from 'react-redux';
+
+
 class HomeContainer extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            fetched_list: [],
+            next: null,
+            previous: null
+        }
+        this.fetch_posts = this.fetch_posts.bind(this)
+        this.setState = this.setState.bind(this)
+    }
+
+    componentDidMount() {
+        this.fetch_posts(1)
+    }
+
+    fetch_posts(page) {
+        fetch_data_page(this.setState, get_posts, page, this.props.addAlert)
+    }
 
     render() {
-        if (!this.props.isAuthenticated) {
-            return (
-                <Redirect to="/login" />
-            )
-        }
         return (
-            <HomeComponent>
-            </HomeComponent>
+            <HomeComponent posts_list={this.state.fetched_list} previous={this.state.previous} next={this.state.next} paginate={this.fetch_posts}/>
         )
     }
 }
 
-const matchStateToProps = (state) => ({ isAuthenticated: state.auth.isAuthenticated });
-
-export default connect(matchStateToProps)(HomeContainer);
+export default connect(null,{addAlert})(HomeContainer);
