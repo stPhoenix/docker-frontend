@@ -13,6 +13,7 @@ import { LocalStoreConnector } from './tools/localStoreConnector';
 import { userData as dispatchUserData, login as dispatchLogin } from './slices/auth';
 import { get_user } from './api';
 import UserPostsContainer from './containers/UserPostsContainer';
+import PostContainer from './containers/PostContainer';
 
 
 
@@ -50,6 +51,7 @@ class App extends Component {
                 <Route path="/subscriptions/my" component={MySubscriptionsContainer} />
                 <Route path="/subscriptions/to-me" component={ToMeSubscriptionsContainer} />
                 <Route path="/posts/user/:id" component={UserPostsContainer} />
+                <Route path="/post/:id" component={PostContainer} />
               </Switch>
             </section>
           </main>

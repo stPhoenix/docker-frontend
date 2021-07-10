@@ -90,7 +90,10 @@ export const get_posts = (params) => (api_call(empty_data, "blog/posts/", params
 export const get_user_posts = (id, params) => (api_call(empty_data, `blog/posts/user/${id}`, params, "get"))
 export const get_my_posts = (params) => (api_call(empty_data, "blog/posts/my/", params, "get"))
 export const get_comments = (id, params) => (api_call(empty_data, `blog/comments/post/${id}`, params, "get"))
+export const get_post = (id) => (api_call(empty_data, `/blog/posts/${id}`, empty, "get"))
 
 export const send_subscription_request = (target) => (api_call({ target, status: "1" }, "social/subscriptions/my/", empty, "post"))
 export const abort_sub_request = (id) => (api_call(empty_data, `social/subscriptions/my/${id}`, empty, "delete"))
 export const proceed_sub_request = (id, data) => (api_call(data, `social/subscriptions/to-me/${id}/`, empty, "put"))
+export const rate_post = (data) => (api_call(data, "blog/rates/",empty, "post"))
+export const send_comment = (data) => (api_call(data, "blog/comments/",empty, "post"))
