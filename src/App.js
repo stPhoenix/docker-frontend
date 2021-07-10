@@ -12,6 +12,7 @@ import React, { Component } from 'react';
 import { LocalStoreConnector } from './tools/localStoreConnector';
 import { userData as dispatchUserData, login as dispatchLogin } from './slices/auth';
 import { get_user } from './api';
+import UserPostsContainer from './containers/UserPostsContainer';
 
 
 
@@ -48,6 +49,7 @@ class App extends Component {
                 <Route path="/users" component={UsersContainer} />
                 <Route path="/subscriptions/my" component={MySubscriptionsContainer} />
                 <Route path="/subscriptions/to-me" component={ToMeSubscriptionsContainer} />
+                <Route path="/posts/user/:id" component={UserPostsContainer} />
               </Switch>
             </section>
           </main>

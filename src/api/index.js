@@ -87,6 +87,7 @@ export const get_user_list = (params) => (api_call(empty_data, "social/users/", 
 export const get_my_subscriptions = (params) => (api_call(empty_data, "social/subscriptions/my/", params, "get"))
 export const get_to_me_subscriptions = (params) => (api_call(empty_data, "social/subscriptions/to-me/", params, "get"))
 export const get_posts = (params) => (api_call(empty_data, "blog/posts/", params, "get"))
+export const get_user_posts = (id, params) => (api_call(empty_data, `blog/posts/user/${id}`, params, "get"))
 export const get_my_posts = (params) => (api_call(empty_data, "blog/posts/my/", params, "get"))
 export const get_comments = (id, params) => (api_call(empty_data, `blog/comments/post/${id}`, params, "get"))
 

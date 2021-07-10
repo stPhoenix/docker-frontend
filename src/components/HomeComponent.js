@@ -4,10 +4,10 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom';
 import { CustomPagination } from './CustomPaginationComponent';
 
-export const HomeComponent = ({posts_list, previous, next, paginate}) => {
+export const HomeComponent = ({posts_list, previous, next, paginate, title="Home"}) => {
     return (
         <section className="d-flex flex-column">
-            <h3>Home</h3>
+            <h3>{title}</h3>
             {posts_list.map((post) => (
                 <Card className="mb-3">
                     <Card.Img width="100" height="100" variant="top" src = {post.avatar} />
