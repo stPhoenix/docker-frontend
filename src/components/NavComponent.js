@@ -13,6 +13,8 @@ const NavComponent = ({ isAuthenticated, avatar, userName, onClick }) => {
             {isAuthenticated ? <Link to="/users">Users list </Link> : ""}
             {isAuthenticated ? <Link to="/subscriptions/my">My subscription requests </Link> : ""}
             {isAuthenticated ? <Link to="/subscriptions/to-me">Subscriptions requests to me </Link> : ""}
+            {isAuthenticated ? <Link to="/posts/my">My posts </Link> : ""}
+            {isAuthenticated ? <Link to="/create">Create post </Link> : ""}
             {isAuthenticated ? "" : <Link to="/login">Login </Link>}
             {isAuthenticated ? "" : <Link to="/signup">Sign up </Link>}
             {isAuthenticated ? <Button variant="outline-primary" onClick={onClick}>Logout</Button> : ""}

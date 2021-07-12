@@ -14,6 +14,7 @@ import { userData as dispatchUserData, login as dispatchLogin } from './slices/a
 import { get_user } from './api';
 import UserPostsContainer from './containers/UserPostsContainer';
 import PostContainer from './containers/PostContainer';
+import CreatePostContainer from './containers/CreatePostContainer';
 
 
 
@@ -51,7 +52,9 @@ class App extends Component {
                 <Route path="/subscriptions/my" component={MySubscriptionsContainer} />
                 <Route path="/subscriptions/to-me" component={ToMeSubscriptionsContainer} />
                 <Route path="/posts/user/:id" component={UserPostsContainer} />
+                <Route path="/posts/:id" component={UserPostsContainer} />
                 <Route path="/post/:id" component={PostContainer} />
+                <Route path="/create" component={CreatePostContainer} />
               </Switch>
             </section>
           </main>

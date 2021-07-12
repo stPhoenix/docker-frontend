@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { HomeComponent } from '../components/HomeComponent';
-import { get_user_posts } from '../api';
+import { get_user_posts, get_my_posts } from '../api';
 import {fetch_id_data_page} from '../tools/fetch_data_page'
 import { add as addAlert } from "../slices/alerts";
 import { connect } from 'react-redux';
@@ -24,7 +24,15 @@ class UserPostsContainer extends Component {
     }
 
     fetch_posts(page) {
-        fetch_id_data_page(this.setState, get_user_posts, page, this.state.id, this.props.addAlert)
+        if (this.state.id === "my")
+        {
+            fetch_id_data_page(this.setState, get_my_posts, page, this.state.id, this.props.addAlert)
+        }
+        else
+        {
+            fetch_id_data_page(this.setState, get_user_posts, page, this.state.id, this.props.addAlert)
+        }
+        
     }
 
     render() {
