@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom';
 import { CustomPagination } from './CustomPaginationComponent';
 
-export const HomeComponent = ({posts_list, previous, next, paginate, title="Home"}) => {
+export const HomeComponent = ({posts_list, previous, next, paginate, title="Home", userId=null}) => {
     return (
         <section className="d-flex flex-column">
             <h3>{title}</h3>
@@ -25,7 +25,13 @@ export const HomeComponent = ({posts_list, previous, next, paginate, title="Home
                         <ListGroupItem>Average rate: {post.rating__rate__avg}</ListGroupItem>
                     </ListGroup>
                     <Card.Body>
-                        <Link to={`/post/${post.id}`}>Read</Link>
+                        {post.author === userId ?
+                            <p><Link to={`/post/my/${post.id}`}>Read</Link>
+                                <Link to={`/edit/${post.id}`}> Edit</Link>
+                            </p>
+                            :
+                            <Link to={`/post/${post.id}`}>Read</Link>
+                            }
                     </Card.Body>
 
                 </Card>

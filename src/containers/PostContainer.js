@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { get_comments, get_post, rate_post, send_comment } from '../api';
+import { get_comments, get_post, rate_post, send_comment, get_my_post, get_my_post_comments } from '../api';
 import { fetch_id_data_page } from '../tools/fetch_data_page'
 import { add as addAlert } from "../slices/alerts";
 import { connect } from 'react-redux';
@@ -30,7 +30,8 @@ class PostContainer extends Component {
     }
 
     fetch_post() {
-        get_post(this.state.id)
+        const get_api = this.props.match.path === "/post/my/:id" ? get_my_post : get_post
+        get_api(this.state.id)
             .then((api_response) => {
                 if (api_response.result) {
                     this.setState({ post: api_response.data })
@@ -39,7 +40,8 @@ class PostContainer extends Component {
     }
 
     fetch_comments(page) {
-        fetch_id_data_page(this.setState, get_comments, page, this.state.id, this.props.addAlert)
+        const get_api = this.props.match.path === "/post/my/:id" ? get_my_post_comments : get_comments
+        fetch_id_data_page(this.setState, get_api, page, this.state.id, this.props.addAlert)
     }
 
     handleChange(e) {

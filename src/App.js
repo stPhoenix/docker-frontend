@@ -53,6 +53,7 @@ class App extends Component {
                 <Route path="/subscriptions/to-me" component={ToMeSubscriptionsContainer} />
                 <Route path="/posts/user/:id" component={UserPostsContainer} />
                 <Route path="/posts/:id" component={UserPostsContainer} />
+                <Route path="/post/my/:id" component={PostContainer} />
                 <Route path="/post/:id" component={PostContainer} />
                 <Route path="/create" component={CreatePostContainer} />
               </Switch>

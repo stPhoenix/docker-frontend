@@ -37,9 +37,9 @@ class UserPostsContainer extends Component {
 
     render() {
         return (
-            <HomeComponent title="User posts" posts_list={this.state.fetched_list} previous={this.state.previous} next={this.state.next} paginate={this.fetch_posts}/>
+            <HomeComponent userId={this.props.userId} title="User posts" posts_list={this.state.fetched_list} previous={this.state.previous} next={this.state.next} paginate={this.fetch_posts}/>
         )
     }
 }
-
-export default connect(null,{addAlert})(UserPostsContainer);
+const mapStateToProps = (state) => ({userId: state.auth.userData.id})
+export default connect(mapStateToProps,{addAlert})(UserPostsContainer);
