@@ -100,5 +100,5 @@ export const proceed_sub_request = (id, data) => (api_call(data, `social/subscri
 export const rate_post = (data) => (api_call(data, "blog/rates/",empty, "post"))
 export const send_comment = (data) => (api_call(data, "blog/comments/",empty, "post"))
 export const create_post = (data) => (api_call(data, "blog/posts/", empty, "post"))
-export const update_post = (data, id) => (api_call(data, `blog/posts/my/${id}`,empty, "put"))
+export const update_post = (data, id) => (api_call(data, `blog/posts/my/${id}/`,empty, "put"))
 export const delete_post = (id) => (api_call(empty_data, `blog/posts/my/${id}`, empty, "delete"))

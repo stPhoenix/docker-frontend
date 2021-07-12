@@ -15,6 +15,7 @@ import { get_user } from './api';
 import UserPostsContainer from './containers/UserPostsContainer';
 import PostContainer from './containers/PostContainer';
 import CreatePostContainer from './containers/CreatePostContainer';
+import EditPostContainer from './containers/EditPostContainer';
 
 
 
@@ -56,6 +57,7 @@ class App extends Component {
                 <Route path="/post/my/:id" component={PostContainer} />
                 <Route path="/post/:id" component={PostContainer} />
                 <Route path="/create" component={CreatePostContainer} />
+                <Route path="/edit/:id" component={EditPostContainer} />
               </Switch>
             </section>
           </main>
