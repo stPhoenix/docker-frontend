@@ -68,7 +68,7 @@ class EditPostContainer extends Component {
     }
 
     handleChange(e) {
-        this.setState({ commentInput: e.target.value })
+        this.setState({ [e.target.name]: e.target.value })
     }
 
   
