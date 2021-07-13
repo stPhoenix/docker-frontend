@@ -12,6 +12,11 @@ import React, { Component } from 'react';
 import { LocalStoreConnector } from './tools/localStoreConnector';
 import { userData as dispatchUserData, login as dispatchLogin } from './slices/auth';
 import { get_user } from './api';
+import UserPostsContainer from './containers/UserPostsContainer';
+import PostContainer from './containers/PostContainer';
+import CreatePostContainer from './containers/CreatePostContainer';
+import EditPostContainer from './containers/EditPostContainer';
+import SearchUsersContainer from "./containers/SearchUsersContainer";
 
 
 
@@ -48,6 +53,13 @@ class App extends Component {
                 <Route path="/users" component={UsersContainer} />
                 <Route path="/subscriptions/my" component={MySubscriptionsContainer} />
                 <Route path="/subscriptions/to-me" component={ToMeSubscriptionsContainer} />
+                <Route path="/posts/user/:id" component={UserPostsContainer} />
+                <Route path="/posts/:id" component={UserPostsContainer} />
+                <Route path="/post/my/:id" component={PostContainer} />
+                <Route path="/post/:id" component={PostContainer} />
+                <Route path="/create" component={CreatePostContainer} />
+                <Route path="/edit/:id" component={EditPostContainer} />
+                <Route path="/search/user" component={SearchUsersContainer} />
               </Switch>
             </section>
           </main>
