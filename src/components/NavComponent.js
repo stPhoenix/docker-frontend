@@ -15,6 +15,7 @@ const NavComponent = ({ isAuthenticated, avatar, userName, onClick }) => {
             {isAuthenticated ? <Link to="/subscriptions/to-me">Subscriptions requests to me </Link> : ""}
             {isAuthenticated ? <Link to="/posts/my">My posts </Link> : ""}
             {isAuthenticated ? <Link to="/create">Create post </Link> : ""}
+            {isAuthenticated ? <Link to="/search/user">Search user </Link> : ""}
             {isAuthenticated ? "" : <Link to="/login">Login </Link>}
             {isAuthenticated ? "" : <Link to="/signup">Sign up </Link>}
             {isAuthenticated ? <Button variant="outline-primary" onClick={onClick}>Logout</Button> : ""}

@@ -16,6 +16,7 @@ import UserPostsContainer from './containers/UserPostsContainer';
 import PostContainer from './containers/PostContainer';
 import CreatePostContainer from './containers/CreatePostContainer';
 import EditPostContainer from './containers/EditPostContainer';
+import SearchUsersContainer from "./containers/SearchUsersContainer";
 
 
 
@@ -58,6 +59,7 @@ class App extends Component {
                 <Route path="/post/:id" component={PostContainer} />
                 <Route path="/create" component={CreatePostContainer} />
                 <Route path="/edit/:id" component={EditPostContainer} />
+                <Route path="/search/user" component={SearchUsersContainer} />
               </Switch>
             </section>
           </main>
